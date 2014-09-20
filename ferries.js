@@ -293,7 +293,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Mossala",
         "SILTA": null,
-        "PITUUS": 333
+        "PITUUS": 333,
+        "Link": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/mossala.html',
       },
       "geometry": {
         "type": "LineString",

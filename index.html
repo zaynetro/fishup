@@ -103,8 +103,10 @@
           weight : 20,
           fillOpacity : 0.5
         };
-      }
+      },
+      onEachFeature: function (feature, layer) {
+          layer.bindPopup(feature.properties.Link);      
+      }     
     }).addTo(map);
-
   </script>
 </body>
