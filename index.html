@@ -59,14 +59,28 @@
 
     circleMarker.bindPopup("I am<br>circleMarker");
 
-    /*L.geoJson(data, {
-      style: function (feature) {
-        return { color: feature.properties.color };
-      },
+    var fishSpotStyle = {
+      fillColor : '#f03',
+      fillOpacity : 0.7,
+      stroke : false
+    };
+
+    var fishSpotPopup = function (feature) {
+      return '<b>Paikka:</b> '    +
+        feature.properties.Paikka +
+        '<br>'                    +
+        '<b>Kuvaus</b> '          +
+        feature.properties.Kuvaus;
+    };
+
+    L.geoJson(data, {
       onEachFeature: function (feature, layer) {
-        layer.bindPopup(feature.properties.Kuvaus);
+        layer.bindPopup(fishSpotPopup(feature));
+      },
+      pointToLayer : function (feature, latlng) {
+        return L.circleMarker(latlng, fishSpotStyle);
       }
-    }).addTo(map);*/
+    }).addTo(map);
 
 
     var polyline = L.polyline([
@@ -81,8 +95,6 @@
 
     polyline.bindPopup("I am polyline");
 
-    console.log(ferries);
-
     L.geoJson(ferries, {
       style : function (feature) {
         return {
@@ -92,7 +104,7 @@
           fillOpacity : 0.5
         };
       }
-    });
+    }).addTo(map);
 
   </script>
 </body>
