@@ -13,7 +13,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Vartsala",
         "SILTA": null,
-        "PITUUS": 766
+        "PITUUS": 766,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/vartsala.html',
       },
       "geometry": {
         "type": "LineString",
@@ -81,7 +82,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Velkuanmaa",
         "SILTA": null,
-        "PITUUS": 950
+        "PITUUS": 950,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/velkuanmaa.html'
       },
       "geometry": {
         "type": "LineString",
@@ -135,7 +137,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Hammarnsalmi",
         "SILTA": null,
-        "PITUUS": 296
+        "PITUUS": 296,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/hammaronsalmi.html'
       },
       "geometry": {
         "type": "LineString",
@@ -159,9 +162,10 @@ var ferries = {
       "type": "Feature",
       "properties": {
         "AINPVM": "1997/01/01",
-        "NIMI": "Vno",
+        "NIMI": "Vano",
         "SILTA": null,
-        "PITUUS": 226
+        "PITUUS": 226,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/vano.html'
       },
       "geometry": {
         "type": "LineString",
@@ -185,9 +189,10 @@ var ferries = {
       "type": "Feature",
       "properties": {
         "AINPVM": "1997/01/01",
-        "NIMI": "Hgsar",
+        "NIMI": "Hogsar",
         "SILTA": null,
-        "PITUUS": 260
+        "PITUUS": 260,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/hogsar.html',
       },
       "geometry": {
         "type": "LineString",
@@ -294,7 +299,7 @@ var ferries = {
         "NIMI": "Mossala",
         "SILTA": null,
         "PITUUS": 333,
-        "Link": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/mossala.html',
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/mossala.html',
       },
       "geometry": {
         "type": "LineString",
@@ -324,7 +329,8 @@ var ferries = {
         "AINPVM": "1996/01/01",
         "NIMI": "Kivimo",
         "SILTA": null,
-        "PITUUS": 151
+        "PITUUS": 151,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/kivimo.html'
       },
       "geometry": {
         "type": "LineString",
@@ -388,7 +394,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Saverkeit",
         "SILTA": null,
-        "PITUUS": 389
+        "PITUUS": 389,
+        "LINK": 'http://www.finferries.fi/lauttaliikenne/lauttapaikat-ja-aikataulut/saverkeit.html'
       },
       "geometry": {
         "type": "LineString",
@@ -782,9 +789,10 @@ var ferries = {
       "type": "Feature",
       "properties": {
         "AINPVM": "1997/01/01",
-        "NIMI": "Keisti",
+        "NIMI": "Keistiö",
         "SILTA": "yksityinen",
-        "PITUUS": 1575
+        "PITUUS": 1575,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/keistio.html'
       },
       "geometry": {
         "type": "LineString",
@@ -862,7 +870,8 @@ var ferries = {
         "AINPVM": "1997/01/01",
         "NIMI": "Palva",
         "SILTA": null,
-        "PITUUS": 1003
+        "PITUUS": 1003,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/palva.html'
       },
       "geometry": {
         "type": "LineString",
@@ -920,7 +929,8 @@ var ferries = {
         "AINPVM": null,
         "NIMI": "Norrskata",
         "SILTA": null,
-        "PITUUS": 4109
+        "PITUUS": 4109,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/korppoo-norrskata.html'
       },
       "geometry": {
         "type": "LineString",
@@ -1022,7 +1032,8 @@ var ferries = {
         "AINPVM": "1899/12/30",
         "NIMI": "Parainen-Nauvo",
         "SILTA": null,
-        "PITUUS": 1563
+        "PITUUS": 1563,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/parainen-nauvo.html'
       },
       "geometry": {
         "type": "LineString",
@@ -1044,7 +1055,8 @@ var ferries = {
         "AINPVM": "2005/08/16",
         "NIMI": "Kokkila",
         "SILTA": null,
-        "PITUUS": 690
+        "PITUUS": 690,
+        "LINK": 'http://www.finferries.fi/en/ferry-traffic/ferries-and-schedules/kokkila.html'
       },
       "geometry": {
         "type": "LineString",
@@ -1064,9 +1076,10 @@ var ferries = {
       "type": "Feature",
       "properties": {
         "AINPVM": "2005/08/16",
-        "NIMI": "Barsund",
+        "NIMI": "Barosund",
         "SILTA": null,
-        "PITUUS": 281
+        "PITUUS": 281,
+        "LINK": 'http://www.finferries.fi/lauttaliikenne/lauttapaikat-ja-aikataulut/barosund.html'
       },
       "geometry": {
         "type": "LineString",
@@ -1086,9 +1099,10 @@ var ferries = {
       "type": "Feature",
       "properties": {
         "AINPVM": "2005/08/16",
-        "NIMI": "Skld",
+        "NIMI": "Skaldo",
         "SILTA": null,
-        "PITUUS": 475
+        "PITUUS": 475,
+        "LINK": 'http://www.finferries.fi/lauttaliikenne/lauttapaikat-ja-aikataulut/skaldo.html'
       },
       "geometry": {
         "type": "LineString",
