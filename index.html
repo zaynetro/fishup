@@ -29,6 +29,9 @@
   <script src='./geojson.js'></script>
   <script src='./ferries.js'></script>
   <script>
+    var mapDom = document.getElementById('map');
+    mapDom.style.height = document.body.clientHeight;
+
     var map = L.map('map').setView([51.505, -0.09], 13);
 
     // create the tile layer with correct attribution
@@ -43,21 +46,6 @@
       maxZoom: 18
     }).addTo(map);
 
-    var circle = L.circle([60.42, 22.14], (18 - map.getZoom()) * 10, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }).addTo(map);
-
-    circle.bindPopup("I am<br>circle");
-
-    var circleMarker = L.circleMarker([60.40, 22.14], {
-        color: 'blue',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }).addTo(map);
-
-    circleMarker.bindPopup("I am<br>circleMarker");
 
     var fishSpotStyle = {
       fillColor : '#f03',
@@ -83,24 +71,12 @@
     }).addTo(map);
 
 
-    var polyline = L.polyline([
-        new L.latLng(60.389428,22.151079),
-        new L.latLng(60.392316,22.158803)
-      ],
-      {
-        color : '#54BF54',
-        weight : 10
-      }
-    ).addTo(map);
-
-    polyline.bindPopup("I am polyline");
-
     L.geoJson(ferries, {
       style : function (feature) {
         return {
           color : '#000',
           fillColor : '#000',
-          weight : 20,
+          weight : 10,
           fillOpacity : 0.5
         };
       },
