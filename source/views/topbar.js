@@ -25,11 +25,11 @@ module.exports = Backbone.View.extend({
   },
 
   toggleMenu : function () {
-    this.$el.find('.menu > ul').slideToggle();
+    this.$el.find('.menu > ul').fadeToggle();
   },
 
   hideMenu : function () {
-    this.$el.find('.menu > ul').slideUp();
+    this.$el.find('.menu > ul').hide();
   }
 
 });

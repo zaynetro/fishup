@@ -18,9 +18,11 @@ module.exports = Backbone.View.extend({
   render : function () {
     this.$el.html(_.template(this.template, { variable : 'data' }));
 
-    this.$el.slick({
-      dots: true
-    });
+    setTimeout((function () {
+      this.$el.slick({
+        dots: true
+      });
+    }).bind(this), 1);
 
     return this;
   }

@@ -15,15 +15,27 @@ module.exports = Backbone.View.extend({
   template : templates.fishingspot,
 
   events : {
-    'click #close' : 'remove'
+    'click #close' : 'close'
   },
 
   render : function () {
     var tmpl = _.template(this.template, { variable : 'data' });
 
-    this.$el.html(tmpl(this.model.toJSON()));
+    this
+      .$el
+      .html(tmpl(this.model.toJSON()))
+      .fadeIn();
 
     return this;
   },
+
+  close : function () {
+    this.$el.fadeOut();
+
+    setTimeout((function () {
+      Backbone.View.prototype.remove.apply(this, arguments);
+    }).bind(this), 500);
+
+  }
 
 });
