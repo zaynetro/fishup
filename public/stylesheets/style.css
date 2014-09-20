@@ -6,9 +6,6 @@
   height: 500px;
 }
 
-#global {
-  z-index: 30;
-}
 
 body {
   margin:0;
@@ -30,7 +27,7 @@ header .logo img{display:inherit;}
 
 /* MENU */
 .menu {
-  z-index: 9;
+  z-index: 11;
   top:0;
   position:fixed;
   width:100%;
@@ -55,6 +52,9 @@ header .logo img{display:inherit;}
   color:#222;
   text-decoration:none;
   text-transform:uppercase;
+}
+.menu ul li > a {
+  text-decoration: none;
 }
 .menu ul li{
   list-style:none;
@@ -140,3 +140,11 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+/* TIPS STYLING */
+.tip{padding:0 15px;}
+.tip h2{
+  color:#c69c6d;
+}
+.tip p em{
+  font-family: 'Droid Serif', serif;
+}

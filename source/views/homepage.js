@@ -97,6 +97,19 @@ module.exports = Backbone.View.extend({
    * Add point to map
    */
   setMap : function () {
+    var
+      w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName('body')[0],
+      y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+    /*console.log(y);
+    console.log(this.$('#topBar'));
+    console.log(this.$('#topBar').height());*/
+
+    this.$el.find('#map').height(y-68);
+
     if(!this.map) this.initMap();
 
     var self = this;

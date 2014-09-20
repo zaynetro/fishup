@@ -7,7 +7,8 @@ var Backbone = require('backbone');
 // Views
 var AppView = require('./views/app');
 var HomePageView = require('./views/homepage');
-var FishingSpotView = require('./views/fishingspot');
+var TipsPageView = require('./views/tipspage');
+var ShareFishView = require('./views/sharefish');
 
 // Collections
 var FishingSpots = require('./collections/fishingspots');
@@ -34,7 +35,7 @@ module.exports = Backbone.Router.extend({
 
   routes : {
     'share' : 'allFishes',
-    'share/add' : 'newFish',
+    'share/add' : 'shareFish',
     'tips' : 'tips',
     '*other' : 'home',
   },
@@ -43,16 +44,28 @@ module.exports = Backbone.Router.extend({
     console.log('all fishes');
   },
 
-  newFish : function () {
-    console.log('all fishes');
+  shareFish : function () {
+    if(this.view) this.view.remove();
+
+    this.app.hideMenu();
+
+    this.view = new ShareFishView();
+    this.app.toContent(this.view.render().el);
   },
 
   tips : function () {
-    console.log('all fishes');
+    if(this.view) this.view.remove();
+
+    this.app.hideMenu();
+
+    this.view = new TipsPageView();
+    this.app.toContent(this.view.render().el);
   },
 
   home : function () {
     if(this.view) this.view.remove();
+
+    this.app.hideMenu();
 
     var fishingSpots = new FishingSpots();
     fishingSpots.fromGeoJSON(fishingSpotsJSON);

@@ -26,6 +26,10 @@ module.exports = Backbone.View.extend({
 
   toggleMenu : function () {
     this.$el.find('.menu > ul').slideToggle();
+  },
+
+  hideMenu : function () {
+    this.$el.find('.menu > ul').slideUp();
   }
 
 });
