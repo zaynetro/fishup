@@ -1,0 +1,17 @@
+ body {
+  padding: 0;
+  margin: 0;
+}
+
+#map {
+  height: 600px;
+}
+
+.controllers {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px;
+  z-index: 10;
+}
