@@ -1,121 +1,125 @@
-// Make map full-screen
-var mapDom = document.getElementById('map');
-mapDom.style.height = document.body.clientHeight;
+document.onload = function () {
 
-// Navigate to Turku area
-var map = L.map('map').setView([60.42, 22.14], 10);
+  // Make map full-screen
+  var mapDom = document.getElementById('map');
+  mapDom.style.height = document.body.clientHeight;
 
-// create the tile layer with correct attribution
-var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+  // Navigate to Turku area
+  var map = L.map('map').setView([60.42, 22.14], 10);
 
-// Load tiles from OpenStreetMap
-L.tileLayer(osmUrl, {
-  attribution: osmAttrib,
-  minZoom: 2,
-  maxZoom: 18
-}).addTo(map);
+  // create the tile layer with correct attribution
+  var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 
-
-// Styles for fishing spots circleMarker
-var fishSpotStyle = {
-  fillColor : '#f03',
-  fillOpacity : 0.7,
-  stroke : false
-};
-
-// Form a content of fishing spot popup
-var fishSpotPopup = function (feature) {
-  return '<b>Paikka:</b> '    +
-    feature.properties.Paikka +
-    '<br>'                    +
-    '<b>Kuvaus</b> '          +
-    feature.properties.Kuvaus;
-};
-
-// Read fishing spots from geoJSON and add to the map
-L.geoJson(data, {
-  onEachFeature: function (feature, layer) {
-    layer.bindPopup(fishSpotPopup(feature));
-  },
-  pointToLayer : function (feature, latlng) {
-    return L.circleMarker(latlng, fishSpotStyle);
-  }
-}).addTo(map);
+  // Load tiles from OpenStreetMap
+  L.tileLayer(osmUrl, {
+    attribution: osmAttrib,
+    minZoom: 2,
+    maxZoom: 18
+  }).addTo(map);
 
 
-// Styles for ferry routes polyline
-var ferryStyle = {
-  color : '#000',
-  fillColor : '#000',
-  weight : 10,
-  fillOpacity : 0.5
-};
+  // Styles for fishing spots circleMarker
+  var fishSpotStyle = {
+    fillColor : '#f03',
+    fillOpacity : 0.7,
+    stroke : false
+  };
 
-// Form a content of ferry routes popup
-var ferryPopup = function (feature) {
-  var str = '<b>Nimi:</b> ' +
-    feature.properties.NIMI;
+  // Form a content of fishing spot popup
+  var fishSpotPopup = function (feature) {
+    return '<b>Paikka:</b> '    +
+      feature.properties.Paikka +
+      '<br>'                    +
+      '<b>Kuvaus</b> '          +
+      feature.properties.Kuvaus;
+  };
 
-  if(feature.properties.LINK) {
-    str += '<br>'           +
-    '<b><a href='           +
-    feature.properties.LINK +
-    ' target="_blank">Schedule</a></b>';
-  }
+  // Read fishing spots from geoJSON and add to the map
+  L.geoJson(data, {
+    onEachFeature: function (feature, layer) {
+      layer.bindPopup(fishSpotPopup(feature));
+    },
+    pointToLayer : function (feature, latlng) {
+      return L.circleMarker(latlng, fishSpotStyle);
+    }
+  }).addTo(map);
 
-  return str;
-};
 
-// Read ferry routes from geoJSON and add to the map
-L.geoJson(ferries, {
-  style : function (feature) {
-    return ferryStyle;
-  },
-  onEachFeature : function (feature, layer) {
-    layer.bindPopup(ferryPopup(feature));
-  }
-}).addTo(map);
+  // Styles for ferry routes polyline
+  var ferryStyle = {
+    color : '#000',
+    fillColor : '#000',
+    weight : 10,
+    fillOpacity : 0.5
+  };
 
-/**
- * Map events
- */
+  // Form a content of ferry routes popup
+  var ferryPopup = function (feature) {
+    var str = '<b>Nimi:</b> ' +
+      feature.properties.NIMI;
 
-var curClick = null;
+    if(feature.properties.LINK) {
+      str += '<br>'           +
+      '<b><a href='           +
+      feature.properties.LINK +
+      ' target="_blank">Schedule</a></b>';
+    }
 
-var coordField = document.getElementById('coordinates');
-var descField = document.getElementById('description');
-var addBtn = document.getElementById('addBtn');
+    return str;
+  };
 
-map.on('click', function (e) {
+  // Read ferry routes from geoJSON and add to the map
+  L.geoJson(ferries, {
+    style : function (feature) {
+      return ferryStyle;
+    },
+    onEachFeature : function (feature, layer) {
+      layer.bindPopup(ferryPopup(feature));
+    }
+  }).addTo(map);
 
-  // Represent cirle on the map
-  if(!curClick) {
-    curClick = L.circleMarker(e.latlng, {
-      color : '#39C44C'
-    }).addTo(map);
-  } else {
-    curClick.setLatLng(e.latlng);
-  }
+  /**
+   * Map events
+   */
 
-  coordField.value = e.latlng.lat + ', ' + e.latlng.lng;
-});
+  var curClick = null;
 
-// Handle adding new points to the map
-var addedPoints = [];
+  var coordField = document.getElementById('coordinates');
+  var descField = document.getElementById('description');
+  var addBtn = document.getElementById('addBtn');
 
-addBtn.addEventListener('click', function () {
-  var desc = descField.value;
-  if(!desc.length) return;
+  map.on('click', function (e) {
 
-  var latlng = new L.latLng(coordField
-                              .value
-                              .split(',')
-                              .map(function (el) { return el.trim(); }));
+    // Represent cirle on the map
+    if(!curClick) {
+      curClick = L.circleMarker(e.latlng, {
+        color : '#39C44C'
+      }).addTo(map);
+    } else {
+      curClick.setLatLng(e.latlng);
+    }
 
-  var point = L.circleMarker(latlng, fishSpotStyle).addTo(map);
+    coordField.value = e.latlng.lat + ', ' + e.latlng.lng;
+  });
 
-  point.bindPopup('<b>Description: </b>' + desc);
-  descField.value = '';
-  addedPoints.push(point);
-}, false);
+  // Handle adding new points to the map
+  var addedPoints = [];
+
+  addBtn.addEventListener('click', function () {
+    var desc = descField.value;
+    if(!desc.length) return;
+
+    var latlng = new L.latLng(coordField
+                                .value
+                                .split(',')
+                                .map(function (el) { return el.trim(); }));
+
+    var point = L.circleMarker(latlng, fishSpotStyle).addTo(map);
+
+    point.bindPopup('<b>Description: </b>' + desc);
+    descField.value = '';
+    addedPoints.push(point);
+  }, false);
+
+}();
