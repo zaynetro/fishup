@@ -1,0 +1,100 @@
+#map {
+  height: 600px;
+}
+
+#global {
+  z-index: 30;
+}
+
+body {
+  margin:0;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight:400;
+  font-size: 15px;
+  color: #515151;
+}
+
+/* HEADER */
+header {
+  position:absolute;
+  width:100%;
+  background:#fff;
+  border-bottom:2px solid #bcb3ac;
+}
+header .logo{padding:10px;}
+header .logo img{display:inherit;}
+
+/* MENU */
+.menu {
+  position:fixed;
+  top:65px;
+  width:100%;
+  background:#fafafa;
+}
+.menu ul {margin:0;padding:0;}
+.menu ul li{
+  list-style:none;
+  padding:1em;
+}
+.menu ul li:nth-child(even){
+  background:#f1f1f1;
+}
+.menu img {float:left;}
+.menu ul li h4{
+  color:#383431;
+  font-size:1.4rem;
+  padding:0;
+  margin:0;
+}
+.menu ul li p{
+  font-family:'Droid Serif', serif;
+  font-size:0.8rem;
+  color:#bcb3ac;
+  padding:0;
+}
+/* FONTS */
+h1 {
+  font-size:1.5rem;
+  margin:0;
+}
+h2, h3 {
+  font-size:1.2rem;
+  margin:1em 0 0;
+}
+p{margin:0 0 10px;}
+
+/* POPUP */
+.popup {
+  top:68px;
+  background:#fff;
+  background:rgba(255,255,255,.9);
+  width:100%;
+  height:100%;
+  position:fixed;
+  padding:1.5em 6%;
+  z-index:4;
+}
+button#close{
+        position:absolute;
+        top:10px;
+        right:10px;
+        display:inline-block;
+        background:none;
+        border:none;
+        text-transform: uppercase;
+        font-size:1.5rem;
+}
+
+
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* RESETS */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
