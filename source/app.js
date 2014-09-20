@@ -1,112 +1,24 @@
-var L = require('./libs/leaflet');
+/**
+ * App
+ */
 
 var Backbone = require('backbone');
 var $ = require('jquery');
 
 Backbone.$ = $;
 
-var ferryRoutesJSON = require('./data/ferryRoutes');
+var Router = require('./router');
 
-var fishingSpotsJSON = require('./data/fishingSpots');
+$(document).ready(function () {
 
+  window.router = new Router();
 
-var FishingSpot = require('./models/fishingspot');
-
-var FishingSpots = require('./collections/fishingspots');
-
-var FishingSpotView = require('./views/fishingspot');
-
-var AppView = require('./views/app.js');
-
-document.onload = function () {
-
-  // Init app
-  var app = new AppView({
-    el : '#app'
+  Backbone.history.start({
+    pushState : true
   });
 
-  app.render();
+});
 
-  var fishingSpots = new FishingSpots();
-
-  // Make map full-screen
-  //var mapDom = document.getElementById('map');
-  //mapDom.style.height = document.body.clientHeight;
-
-  // Init map
-  var map = require('./map.js');
-
-
-  // Styles for fishing spots circleMarker
-  var fishSpotStyle = {
-    fillColor : '#f03',
-    fillOpacity : 0.7,
-    stroke : false
-  };
-
-  // Form a content of fishing spot popup
-  var fishSpotPopup = function (feature) {
-    return '<b>Paikka:</b> '    +
-      feature.properties.Paikka +
-      '<br>'                    +
-      '<b>Kuvaus</b> '          +
-      feature.properties.Kuvaus;
-  };
-
-  // Read fishing spots from geoJSON and add to the map
-  L.geoJson(fishingSpotsJSON, {
-    onEachFeature: function (feature, layer) {
-
-      var fishingSpot = new FishingSpot(feature);
-      fishingSpots.add(fishingSpot);
-
-      layer.addEventListener('click', function () {
-        var fishingSpotView = new FishingSpotView({
-          model : fishingSpot
-        });
-
-        app.toGlobal(fishingSpotView);
-      }, false);
-
-    },
-    pointToLayer : function (feature, latlng) {
-      return L.circleMarker(latlng, fishSpotStyle);
-    }
-  }).addTo(map);
-
-
-  // Styles for ferry routes polyline
-  var ferryStyle = {
-    color : '#000',
-    fillColor : '#000',
-    weight : 10,
-    fillOpacity : 0.5
-  };
-
-  // Form a content of ferry routes popup
-  var ferryPopup = function (feature) {
-    var str = '<b>Nimi:</b> ' +
-      feature.properties.NIMI;
-
-    if(feature.properties.LINK) {
-      str += '<br>'           +
-      '<b><a href='           +
-      feature.properties.LINK +
-      ' target="_blank">Schedule</a></b>';
-    }
-
-    return str;
-  };
-
-  // Read ferry routes from geoJSON and add to the map
-  L.geoJson(ferryRoutesJSON, {
-    style : function (feature) {
-      return ferryStyle;
-    },
-    onEachFeature : function (feature, layer) {
-      layer.bindPopup(ferryPopup(feature));
-    }
-  }).addTo(map);
 
   /**
    * Map events
@@ -167,5 +79,3 @@ document.onload = function () {
       });
     }
   }, false);*/
-
-}();

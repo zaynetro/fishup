@@ -32,15 +32,9 @@ module.exports = Backbone.View.extend({
     view.setElement(this.$(selector)).render(options);
   },
 
-  toGlobal : function (view) {
-    if(this.subviews.global) this.subviews.global.remove();
-
-    this
-      .$el
-      .find('#global')
-      .html(view.render().el);
-
-    this.subviews.global = view;
+  toContent : function (html) {
+    this.$el.find('#content').html(html);
+    return this;
   },
 
   remove : function() {
