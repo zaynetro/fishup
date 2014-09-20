@@ -23,6 +23,8 @@ var paths = {
  * Build js files from the source folder
  */
 gulp.task('js', function () {
+  console.log('Build ' + paths.builds.dest + 'file');
+
   gulp
     .src(paths.builds.src)
     .pipe(browserify({ debug : true }))

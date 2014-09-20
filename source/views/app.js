@@ -8,16 +8,22 @@ var
 
 var templates = require('../templates/');
 
+var TopBarView = require('./topbar.js');
+
 module.exports = Backbone.View.extend({
 
   template : templates.app,
 
   subviews : {},
 
-  initialize : function () {},
+  initialize : function () {
+    this.subviews.topbar = new TopBarView();
+  },
 
   render : function () {
     this.$el.html(_.template(this.template, {}, { variable : 'data' }));
+
+    this.$el.find('#topBar').html(this.subviews.topbar.render().el);
 
     return this;
   },

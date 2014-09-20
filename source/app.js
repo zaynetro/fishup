@@ -61,7 +61,6 @@ document.onload = function () {
       fishingSpots.add(fishingSpot);
 
       layer.addEventListener('click', function () {
-        console.log('go');
         var fishingSpotView = new FishingSpotView({
           model : fishingSpot
         });
@@ -113,6 +112,7 @@ document.onload = function () {
    * Map events
    */
 
+  /*
   var curClick = null;
 
   var coordField = document.getElementById('coordinates');
@@ -131,7 +131,7 @@ document.onload = function () {
     }
 
     coordField.value = e.latlng.lat + ', ' + e.latlng.lng;
-  });
+  });*/
 
   // Handle adding new points to the map
   /*var addedPoints = [];
