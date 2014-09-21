@@ -8,6 +8,8 @@ var
 
 var templates = require('../templates');
 
+var fishingSpotHelpers = require('../util/fishingspot');
+
 module.exports = Backbone.View.extend({
 
   className : 'popup',
@@ -18,13 +20,22 @@ module.exports = Backbone.View.extend({
     'click #close' : 'close'
   },
 
+  initialize : function () {
+    this.model.loadWeather();
+
+    this.model.on('all', this.render, this);
+  },
+
   render : function () {
     var tmpl = _.template(this.template, { variable : 'data' });
 
+    var data = this.model.toJSON();
+
+    _.extend(data, fishingSpotHelpers);
+
     this
       .$el
-      .html(tmpl(this.model.toJSON()))
-      .fadeIn();
+      .html(tmpl(data));
 
     return this;
   },

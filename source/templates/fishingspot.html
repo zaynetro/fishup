@@ -19,4 +19,14 @@
   <p><%= data.properties.Veneenlask %></p>
 </div>
 
+<% if(data.weather) { %>
+<div class='weather'>
+  <ul>
+    <li>Temperature: <%= data.getTemp(data) %></li>
+    <li>Wind speed: <%= data.getWind(data) %></li>
+    <li><%= data.getDesc(data) %></li>
+  </ul>
+</div>
+<% } %>
+
 <button id="close"><i class="fa fa-times"></i></button>

@@ -13,7 +13,8 @@ module.exports = Backbone.View.extend({
   tagName : 'header',
 
   events : {
-    'click #pull' : 'toggleMenu'
+    'click #pull' : 'toggleMenu',
+    'click .menu > ul > li > a' : 'hideMenu'
   },
 
   template : templates.topbar,
@@ -29,7 +30,7 @@ module.exports = Backbone.View.extend({
   },
 
   hideMenu : function () {
-    this.$el.find('.menu > ul').hide();
+    this.$el.find('.menu > ul').fadeOut();
   }
 
 });

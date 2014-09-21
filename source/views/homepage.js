@@ -68,7 +68,7 @@ module.exports = Backbone.View.extend({
     this
       .$el
       .find('#global')
-      .html(view.render().el);
+      .html(view.render().$el.fadeIn());
 
     this.subviews.global = view;
   },

@@ -47,8 +47,6 @@ module.exports = Backbone.Router.extend({
   shareFish : function () {
     if(this.view) this.view.remove();
 
-    this.app.hideMenu();
-
     this.view = new ShareFishView();
     this.app.toContent(this.view.render().el);
   },
@@ -56,16 +54,12 @@ module.exports = Backbone.Router.extend({
   tips : function () {
     if(this.view) this.view.remove();
 
-    this.app.hideMenu();
-
     this.view = new TipsPageView();
     this.app.toContent(this.view.render().el);
   },
 
   home : function () {
     if(this.view) this.view.remove();
-
-    this.app.hideMenu();
 
     var fishingSpots = new FishingSpots();
     fishingSpots.fromGeoJSON(fishingSpotsJSON);
