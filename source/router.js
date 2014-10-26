@@ -13,6 +13,7 @@ var ShareFishView = require('./views/sharefish');
 // Collections
 var FishingSpots = require('./collections/fishingspots');
 var FerryRoutes = require('./collections/ferryroutes');
+var ShareFishes = require('./collections/sharefishes');
 
 // Models
 
@@ -43,7 +44,14 @@ module.exports = Backbone.Router.extend({
   shareFish : function () {
     if(this.view) this.view.remove();
 
-    this.view = new ShareFishView();
+    var shareFishes = new ShareFishes();
+    shareFishes.fetch({
+      headers : api.parseHeader
+    });
+
+    this.view = new ShareFishView({
+      collection : shareFishes
+    });
     this.app.toContent(this.view.render().el);
   },
 

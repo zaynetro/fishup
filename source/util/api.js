@@ -8,6 +8,7 @@ var apiKey = 'awmJoBIzyfdbrlJdaqf6AwVyyOwm8MljueAurQN3';
 module.exports = {
 
   parseBaseUrl : 'https://api.parse.com/1/classes/',
+  parseFileUrl : 'https://api.parse.com/1/files/',
 
   parseHeader : {
     'X-Parse-Application-Id' : appId,
