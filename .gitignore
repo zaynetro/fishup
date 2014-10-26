@@ -8,5 +8,5 @@ logs
 node_modules
 
 # Builds
-public/javascripts/*
+public/javascripts/*.js
 source/templates/index.js
