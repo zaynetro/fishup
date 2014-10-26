@@ -11,7 +11,6 @@ module.exports = Backbone.Collection.extend({
 
   fromGeoJSON : function (geoJSON) {
     this.add(geoJSON.features);
-
     return this;
   },
 

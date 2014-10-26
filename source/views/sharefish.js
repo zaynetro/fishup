@@ -18,7 +18,6 @@ module.exports = Backbone.View.extend({
 
   render : function () {
     this.$el.html(_.template(this.template, { variable : 'data' }));
-
     return this;
   },
 
@@ -34,13 +33,10 @@ module.exports = Backbone.View.extend({
       try {
         // Get window.URL object
         var URL = window.URL || window.webkitURL;
-
         // Create ObjectURL
         var imgURL = URL.createObjectURL(file);
-
         // Set img src to ObjectURL
         $showPic.attr('src', imgURL);
-
         // Revoke ObjectURL
         URL.revokeObjectURL(imgURL);
       }

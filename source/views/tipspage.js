@@ -14,7 +14,6 @@ module.exports = Backbone.View.extend({
 
   template : templates.tipspage,
 
-
   render : function () {
     this.$el.html(_.template(this.template, { variable : 'data' }));
 
