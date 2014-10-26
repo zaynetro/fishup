@@ -3,7 +3,7 @@
  */
 
 var
-  L = require('../libs/leaflet'),
+  L = require('leaflet'),
   _ = require('underscore'),
   Backbone = require('backbone');
 
@@ -25,6 +25,7 @@ module.exports = Backbone.View.extend({
   initialize : function (options) {
     options = options || {};
     this.spots = options.spots;
+    this.spots.on('sync', this.setSpots, this);
   },
 
   render : function () {
@@ -98,6 +99,20 @@ module.exports = Backbone.View.extend({
     if(!this.map) this.initMap();
 
     var self = this;
+    // Read ferry routes from geoJSON and add to the map
+    L.geoJson(ferryRoutesJSON, {
+      style : function (feature) {
+        return markerStyles.ferryStyle;
+      },
+      onEachFeature : function (feature, layer) {
+        layer.bindPopup(self.ferryPopup(feature));
+      }
+    }).addTo(self.map);
+  },
+
+  // Update fishing spots on the map
+  setSpots : function () {
+    var self = this;
     // Read fishing spots from geoJSON and add to the map
     L.geoJson(self.spots.toGeoJSON(), {
       onEachFeature: function (feature, layer) {
@@ -119,17 +134,6 @@ module.exports = Backbone.View.extend({
       },
       pointToLayer : function (feature, latlng) {
         return L.circleMarker(latlng, markerStyles.spotStyle);
-      }
-    }).addTo(self.map);
-
-
-    // Read ferry routes from geoJSON and add to the map
-    L.geoJson(ferryRoutesJSON, {
-      style : function (feature) {
-        return markerStyles.ferryStyle;
-      },
-      onEachFeature : function (feature, layer) {
-        layer.bindPopup(self.ferryPopup(feature));
       }
     }).addTo(self.map);
   },

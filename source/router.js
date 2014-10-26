@@ -15,10 +15,7 @@ var FishingSpots = require('./collections/fishingspots');
 
 // Models
 
-
-// JSON (to be changed in the Future with server communication)
-//var ferryRoutesJSON = require('./data/ferryRoutes');
-var fishingSpotsJSON = require('./data/fishingSpots');
+var api = require('./util/api');
 
 module.exports = Backbone.Router.extend({
 
@@ -40,9 +37,7 @@ module.exports = Backbone.Router.extend({
     '*other' : 'home',
   },
 
-  allFishes : function () {
-    console.log('all fishes');
-  },
+  allFishes : function () {},
 
   shareFish : function () {
     if(this.view) this.view.remove();
@@ -62,14 +57,15 @@ module.exports = Backbone.Router.extend({
     if(this.view) this.view.remove();
 
     var fishingSpots = new FishingSpots();
-    fishingSpots.fromGeoJSON(fishingSpotsJSON);
+    fishingSpots.fetch({
+      headers : api.parseHeader
+    });
 
     this.view = new HomePageView({
       spots : fishingSpots
     });
 
     this.app.toContent(this.view.render().el);
-
     this.view.setMap();
   }
 });
