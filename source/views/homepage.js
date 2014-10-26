@@ -21,6 +21,11 @@ module.exports = Backbone.View.extend({
   template : templates.homepage,
 
   subviews : {},
+  location : null,
+
+  events : {
+    'click .my-location-btn' : 'showMyLocation'
+  },
 
   initialize : function (options) {
     options = options || {};
@@ -136,6 +141,19 @@ module.exports = Backbone.View.extend({
         return L.circleMarker(latlng, markerStyles.spotStyle);
       }
     }).addTo(self.map);
+  },
+
+  showMyLocation : function () {
+    var self = this;
+
+    if ("geolocation" in navigator) {
+      /* geolocation is available */
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var latlng = L.latLng(position.coords.latitude, position.coords.longitude);
+        if(self.location) self.map.removeLayer(self.location);
+        self.location = L.circleMarker(latlng, markerStyles.myLocationStyle).addTo(self.map);
+      });
+    }
   },
 
   remove : function() {

@@ -6,7 +6,6 @@
   height: 500px;
 }
 
-
 body {
   margin:0;
   font-family: 'Titillium Web', sans-serif;
@@ -132,6 +131,7 @@ button#close{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  outline: none;
 }
 
 /* RESETS */
@@ -158,4 +158,27 @@ footer, header, hgroup, menu, nav, section {
 
 .result-picture img {
   width: 100%;
+}
+
+
+.controlBar {
+  position: absolute;
+  top: 1rem;
+  right: 0.1rem;
+}
+
+.my-location-btn {
+  font-size: 1.6rem;
+  background: #fff;
+  border: 0;
+}
+
+.my-location-btn:active {
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+#content {
+  position: relative;
 }

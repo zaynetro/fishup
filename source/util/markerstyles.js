@@ -17,6 +17,13 @@ module.exports = {
     fillColor : '#000',
     weight : 10,
     fillOpacity : 0.5
+  },
+
+  // Styles for my location circleMarker
+  myLocationStyle : {
+    fillColor : '#0376F0',
+    fillOpacity : 0.7,
+    stroke : false
   }
 
 };
