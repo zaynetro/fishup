@@ -11,6 +11,8 @@ var templates = require('../templates');
 
 var FishingSpotView = require('./fishingspot');
 
+var markerStyles = require('../util/markerstyles');
+
 // REMOVE
 var ferryRoutesJSON = require('../data/ferryRoutes');
 
@@ -22,43 +24,11 @@ module.exports = Backbone.View.extend({
 
   initialize : function (options) {
     options = options || {};
-
     this.spots = options.spots;
-
-    // Styles for fishing spots circleMarker
-    this.spotStyle = {
-      fillColor : '#f03',
-      fillOpacity : 0.7,
-      stroke : false
-    };
-
-    // Styles for ferry routes polyline
-    this.ferryStyle = {
-      color : '#000',
-      fillColor : '#000',
-      weight : 10,
-      fillOpacity : 0.5
-    };
-
-    // Form a content of ferry routes popup
-    this.ferryPopup = function (feature) {
-      var str = '<b>Nimi:</b> ' +
-        feature.properties.NIMI;
-
-      if(feature.properties.LINK) {
-        str += '<br>'           +
-        '<b><a href='           +
-        feature.properties.LINK +
-        ' target="_blank">Schedule</a></b>';
-      }
-
-      return str;
-    };
   },
 
   render : function () {
     this.$el.html(_.template(this.template));
-
     return this;
   },
 
@@ -71,6 +41,21 @@ module.exports = Backbone.View.extend({
       .html(view.render().$el.fadeIn());
 
     this.subviews.global = view;
+  },
+
+  // Form a content of ferry routes popup
+  ferryPopup : function (feature) {
+    var str = '<b>Nimi:</b> ' +
+      feature.properties.NIMI;
+
+    if(feature.properties.LINK) {
+      str += '<br>'           +
+      '<b><a href='           +
+      feature.properties.LINK +
+      ' target="_blank">Schedule</a></b>';
+    }
+
+    return str;
   },
 
   /**
@@ -133,7 +118,7 @@ module.exports = Backbone.View.extend({
 
       },
       pointToLayer : function (feature, latlng) {
-        return L.circleMarker(latlng, self.spotStyle);
+        return L.circleMarker(latlng, markerStyles.spotStyle);
       }
     }).addTo(self.map);
 
@@ -141,7 +126,7 @@ module.exports = Backbone.View.extend({
     // Read ferry routes from geoJSON and add to the map
     L.geoJson(ferryRoutesJSON, {
       style : function (feature) {
-        return self.ferryStyle;
+        return markerStyles.ferryStyle;
       },
       onEachFeature : function (feature, layer) {
         layer.bindPopup(self.ferryPopup(feature));

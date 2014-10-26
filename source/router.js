@@ -71,6 +71,5 @@ module.exports = Backbone.Router.extend({
     this.app.toContent(this.view.render().el);
 
     this.view.setMap();
-
   }
 });

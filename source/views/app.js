@@ -22,9 +22,7 @@ module.exports = Backbone.View.extend({
 
   render : function () {
     this.$el.html(_.template(this.template, { variable : 'data' }));
-
     this.$el.find('#topBar').html(this.subviews.topbar.render().el);
-
     return this;
   },
 
@@ -35,10 +33,6 @@ module.exports = Backbone.View.extend({
   toContent : function (html) {
     this.$el.find('#content').html(html);
     return this;
-  },
-
-  hideMenu : function () {
-    this.subviews.topbar.hideMenu();
   },
 
   remove : function() {

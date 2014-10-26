@@ -1,0 +1,9 @@
+{
+  "verbose" : "true",
+  "ignore" : [
+    "source",
+    "node_modules",
+    "public",
+    "*.log"
+  ]
+}
