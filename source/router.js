@@ -9,6 +9,7 @@ var AppView = require('./views/app');
 var HomePageView = require('./views/homepage');
 var TipsPageView = require('./views/tipspage');
 var ShareFishView = require('./views/sharefish');
+var AboutPageView = require('./views/aboutpage');
 
 // Collections
 var FishingSpots = require('./collections/fishingspots');
@@ -33,13 +34,11 @@ module.exports = Backbone.Router.extend({
   },
 
   routes : {
-    'share' : 'allFishes',
-    'share/add' : 'shareFish',
+    'share' : 'shareFish',
     'tips' : 'tips',
+    'about' : 'about',
     '*other' : 'home',
   },
-
-  allFishes : function () {},
 
   shareFish : function () {
     if(this.view) this.view.remove();
@@ -59,6 +58,13 @@ module.exports = Backbone.Router.extend({
     if(this.view) this.view.remove();
 
     this.view = new TipsPageView();
+    this.app.toContent(this.view.render().el);
+  },
+
+  about : function () {
+    if(this.view) this.view.remove();
+
+    this.view = new AboutPageView();
     this.app.toContent(this.view.render().el);
   },
 

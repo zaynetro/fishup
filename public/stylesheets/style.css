@@ -199,3 +199,10 @@ footer, header, hgroup, menu, nav, section {
   max-width: 300px;
   max-height: 300px;
 }
+
+.aboutpage {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
